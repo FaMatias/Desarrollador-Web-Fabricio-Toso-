@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabricio Matías Toso | Desarrollador Web y Biotecnólogo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font-Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            min-height: 100vh;
+            /* Fondo animado sutil con azules oscuros y profesionales */
+            background: linear-gradient(135deg, #0f172a, #1e3a8a, #0f172a, #0d1117);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gradient-text {
+            background-image: linear-gradient(45deg, #4299e1, #2b6cb0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-header {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: #2b6cb0;
+            border-radius: 9999px;
+        }
+        /* Estilo para el fondo del hero */
+        #hero-background {
+            background-image: url('https://placehold.co/1920x1080/1f2937/d1d5db?text=Fondo+Profesional');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        #hero-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 17, 23, 0.85);
+        }
+        .message-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- Barra de navegación -->
+        <nav class="fixed top-4 left-4 right-4 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm p-4 rounded-3xl shadow-lg flex items-center justify-between transition-all duration-300">
+            <!-- Logo (placeholder) -->
+            <a href="#" class="flex items-center space-x-2 text-white font-bold text-xl md:text-2xl hover:text-blue-400 transition-colors">
+                <i class="fas fa-code fa-lg text-blue-400"></i>
+                <span>Fabricio Toso</span>
+            </a>
+            <!-- Menú de navegación -->
+            <div class="flex space-x-4 md:space-x-6">
+                <a href="#inicio" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Inicio</a>
+                <a href="#filosofia" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Mi Filosofía</a>
+                <a href="#servicios" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Servicios</a>
+                <a href="#proyectos" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Proyectos</a>
+                <a href="#contacto" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Contacto</a>
+            </div>
+            <!-- Botón de contacto para móvil -->
+            <a href="#contacto" class="md:hidden bg-blue-500 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-all duration-300 hover:bg-blue-600">
+                Contacto
+            </a>
+        </nav>
+
+        <!-- Sección de Inicio (Hero) -->
+        <section id="inicio" class="relative overflow-hidden flex flex-col items-center justify-center min-h-[100vh] text-center p-6 rounded-3xl mt-20" id="hero-background">
+            <div class="z-10">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">
+                    Hola, soy <span class="gradient-text">Fabricio Toso</span>
+                </h1>
+                <p class="text-lg md:text-2xl text-gray-400 mb-6 font-light">
+                    <span id="typing-effect" class="font-bold"></span>
+                </p>
+                <p class="text-gray-400 max-w-2xl mb-8">
+                    Combino mi pasión por el desarrollo web con un enfoque analítico y creativo para construir soluciones digitales que funcionan.
+                </p>
+                <a href="#contacto" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:bg-blue-600">
+                    ¡Hablemos de tu proyecto!
+                </a>
+            </div>
+        </section>
+
+        <!-- Nueva Sección: Mi Filosofía de Trabajo -->
+        <section id="filosofia" class="py-12 md:py-24 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Mi Filosofía de Trabajo</h2>
+            <div class="max-w-4xl mx-auto mt-12 text-left">
+                <p class="text-lg text-gray-300 mb-4">
+                    Me adapto a tus necesidades con una **gran relación calidad precio**, con tarifas de programador web para pequeños y medianos negocios. Desarrollo web desde cero o rediseño de tu página web con un diseño moderno y elegante.
+                </p>
+                <p class="text-lg text-gray-300 mb-4">
+                    Con un proyecto web robusto y de calidad, darás una nueva imagen a tu negocio, conseguirás un mayor volumen de negocio con información directa a tus clientes las 24h del día. Te oriento de principio a fin desde las necesidades técnicas hasta la contratación del hosting y dominio, para que tengas tu página web terminada y lista para funcionar «llave en mano».
+                    <br><br>
+                    **¡Hazte visible en internet!**
+                </p>
+                <p class="text-lg text-gray-300 mt-8">
+                    Principalmente realizo proyectos de **Páginas Webs WordPress y Tiendas Online**, seguidos muy de cerca de los servicios de **mantenimiento web y gestión**. También Maquetación de Newsletters HTML, para enviar por email o MailChimp, entre otros muchos proyectos.
+                </p>
+            </div>
+        </section>
+
+        <!-- Sección de Servicios -->
+        <section id="servicios" class="py-12 md:py-24 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Mis Servicios</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <!-- Tarjeta de Servicio 1 -->
+                <div class="bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
+                    <i class="fas fa-desktop fa-3x gradient-text mb-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-200 mb-2">Desarrollo Web</h3>
+                    <p class="text-gray-400">Creación de sitios web a medida, desde landing pages hasta plataformas complejas. Diseño moderno y responsivo garantizado.</p>
+                </div>
+                <!-- Tarjeta de Servicio 2 -->
+                <div class="bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
+                    <i class="fab fa-wordpress fa-3x gradient-text mb-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-200 mb-2">Especialista en WordPress</h3>
+                    <p class="text-gray-400">Desarrollo y personalización de temas y plugins. Optimización y mantenimiento para un rendimiento óptimo.</p>
+                </div>
+                <!-- Tarjeta de Servicio 3 -->
+                <div class="bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
+                    <i class="fas fa-mobile-alt fa-3x gradient-text mb-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-200 mb-2">Aplicaciones Digitales</h3>
+                    <p class="text-gray-400">Diseño y construcción de aplicaciones interactivas que resuelven problemas reales y mejoran la experiencia del usuario.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Proyectos -->
+        <section id="proyectos" class="py-12 md:py-24 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Mis Proyectos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+                <!-- Proyectos de GitHub (privados, enlazados al repo) -->
+                <a href="https://github.com/FaMatias/Sistema_inventarios" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Sistema de Inventarios</h3>
+                    <p class="text-gray-400 mb-4">Un sistema de gestión de inventarios hecho a medida para un cliente.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                </a>
+                <a href="https://github.com/FaMatias/Vinos_Argentina" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Vinos Argentina</h3>
+                    <p class="text-gray-400 mb-4">Una aplicación web para explorar y gestionar datos sobre vinos argentinos.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                </a>
+                <a href="https://github.com/FaMatias/Stock-de-Vinos-Ex-ticos" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Stock de Vinos Exóticos</h3>
+                    <p class="text-gray-400 mb-4">Plataforma de gestión de stock para una colección de vinos especializados.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                </a>
+                
+                <!-- Proyectos existentes -->
+                <a href="https://famatias.github.io/Simple-Links/index.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Simple-Links</h3>
+                    <p class="text-gray-400 mb-4">Una página de enlaces personalizada para perfiles sociales.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                </a>
+                <a href="https://famatias.github.io/Simple-Links/practicas.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Pizarra Colaborativa</h3>
+                    <p class="text-gray-400 mb-4">Aplicación de pizarra en tiempo real para trabajo en equipo.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                </a>
+                <a href="https://famatias.github.io/Simple-Links/practicas.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Tablero Kanban</h3>
+                    <p class="text-gray-400 mb-4">Herramienta para organizar tareas en un tablero visual.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                </a>
+                <a href="https://famatias.github.io/Simple-Links/practicas.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Generador de Contraseñas</h3>
+                    <p class="text-gray-400 mb-4">Crea contraseñas seguras y aleatorias con un clic.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                </a>
+                <a href="https://famatias.github.io/Simple-Links/utiles.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Calculadora de Edad</h3>
+                    <p class="text-gray-400 mb-4">Calcula la edad de una persona a partir de su fecha de nacimiento.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                </a>
+                <a href="https://famatias.github.io/Simple-Links/utiles.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Juego del Ahorcado</h3>
+                    <p class="text-gray-400 mb-4">Clásico juego del ahorcado para pasar el rato.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Juego</span>
+                </a>
+                <a href="https://famatias.github.io/Simple-Links/utiles.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Piedra, Papel o Tijera</h3>
+                    <p class="text-gray-400 mb-4">El clásico juego de mano contra la computadora.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Juego</span>
+                </a>
+                <a href="https://famatias.github.io/Simple-Links/utiles.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
+                    <h3 class="text-xl font-bold text-white mb-1">Tablas de Multiplicar</h3>
+                    <p class="text-gray-400 mb-4">Una aplicación simple para practicar las tablas de multiplicar.</p>
+                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Sección de Contacto con formulario -->
+        <section id="contacto" class="py-12 md:py-24 text-center">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Pide tu Presupuesto</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+                ¿Tienes una idea o necesitas ayuda con tu proyecto digital? No dudes en contactarme. Estoy listo para ayudarte a crear algo increíble.
+            </p>
+            <div class="max-w-xl mx-auto p-8 bg-gray-800 rounded-3xl shadow-xl">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre" required class="w-full p-4 rounded-xl border-2 border-gray-700 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-gray-50 placeholder-gray-500">
+                    </div>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Tu Email" required class="w-full p-4 rounded-xl border-2 border-gray-700 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-gray-50 placeholder-gray-500">
+                    </div>
+                    <div>
+                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe tu proyecto" required class="w-full p-4 rounded-xl border-2 border-gray-700 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-gray-50 placeholder-gray-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-500 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:bg-blue-600">
+                        Enviar Presupuesto
+                    </button>
+                </form>
+                <div class="flex items-center justify-center space-x-6 mt-8">
+                    <!-- Enlace a LinkedIn -->
+                    <a href="https://www.linkedin.com/in/fabricio-matias-toso/" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                    <!-- Enlace a GitHub (sin enlace por ahora) -->
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                    <!-- Enlace a Twitter/X (sin enlace por ahora) -->
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <i class="fab fa-twitter fa-2x"></i>
+                    </a>
+                    <!-- Enlace a Instagram -->
+                    <a href="https://www.instagram.com/fa.matias/" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <i class="fab fa-instagram fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pie de página -->
+        <footer class="text-center text-gray-500 mt-16 py-4 border-t border-gray-700">
+            <p>&copy; 2024 Fabricio Matías Toso. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- Message Box -->
+    <div id="messageBox" class="message-box bg-emerald-500 text-white p-4 rounded-xl shadow-lg">
+        <p id="messageText"></p>
+    </div>
+
+    <!-- Script para el efecto de escritura y el formulario -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const typingElement = document.getElementById('typing-effect');
+            const phrases = ["Desarrollador Web", "Programador de Aplicaciones Digitales", "Especialista en WordPress", "Biotecnólogo"];
+            let phraseIndex = 0;
+            let letterIndex = 0;
+            let isDeleting = false;
+            let delay = 100;
+
+            function type() {
+                const currentPhrase = phrases[phraseIndex];
+                if (isDeleting) {
+                    typingElement.textContent = currentPhrase.substring(0, letterIndex - 1);
+                    letterIndex--;
+                } else {
+                    typingElement.textContent = currentPhrase.substring(0, letterIndex + 1);
+                    letterIndex++;
+                }
+
+                if (!isDeleting && letterIndex === currentPhrase.length) {
+                    delay = 2000;
+                    isDeleting = true;
+                } else if (isDeleting && letterIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    delay = 500;
+                } else {
+                    delay = isDeleting ? 50 : 100;
+                }
+
+                setTimeout(type, delay);
+            }
+
+            type();
+
+            // Lógica del formulario de contacto
+            const contactForm = document.getElementById('contact-form');
+            function showMessage(text, type = 'success', duration = 3000) {
+                const messageBox = document.getElementById('messageBox');
+                const messageText = document.getElementById('messageText');
+                messageText.textContent = text;
+                messageBox.className = 'message-box p-4 rounded-xl shadow-lg';
+                if (type === 'error') {
+                    messageBox.classList.add('bg-red-500', 'text-white');
+                } else {
+                    messageBox.classList.add('bg-emerald-500', 'text-white');
+                }
+                messageBox.style.display = 'block';
+                setTimeout(() => {
+                    messageBox.style.display = 'none';
+                }, duration);
+            }
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nombre = document.getElementById('nombre').value;
+                const email = document.getElementById('email').value;
+                const mensaje = document.getElementById('mensaje').value;
+                
+                // Simulación del envío de correo.
+                // En un sitio web real, esto se manejaría con un backend.
+                
+                showMessage("¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.");
+                contactForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
