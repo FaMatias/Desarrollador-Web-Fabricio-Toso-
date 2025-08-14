@@ -3,52 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabricio Matías Toso | Desarrollador Web y Biotecnólogo</title>
+    <title>Fabricio Matías Toso | Desarrollador y Biotecnólogo</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font-Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0f172a, #1e3a8a, #0f172a, #0d1117);
-            background-size: 400% 400%;
-            animation: gradient-animation 15s ease infinite;
+            background-color: #0F172A; /* Azul oscuro suave */
+            color: #E2E8F0; /* Gris claro para el texto */
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
         }
 
-        @keyframes gradient-animation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Efecto de fondo con un degradado sutil */
+        .hero-bg-container {
+            background: radial-gradient(circle at top, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 1) 70%);
         }
 
-        .gradient-text {
-            background-image: linear-gradient(45deg, #4299e1, #2b6cb0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Estilo de la barra de navegación con blur */
+        .navbar-blur {
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
         }
-        .section-header {
-            position: relative;
-            padding-bottom: 0.5rem;
-            margin-bottom: 2rem;
-        }
-        .section-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: #2b6cb0;
+
+        /* Estilo de los botones principales */
+        .main-btn {
+            background-color: #2563EB; /* Azul profesional */
+            color: white;
+            padding: 0.75rem 1.5rem;
             border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
         }
-        .message-box, .api-response-box {
+        .main-btn:hover {
+            background-color: #1E40AF;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
+        }
+        
+        /* Estilos de las tarjetas de servicios/proyectos */
+        .card {
+            background-color: #1e293b; /* Gris oscuro para las tarjetas */
+            border: 1px solid #334155; /* Borde sutil */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .api-response-box {
             display: none;
             position: fixed;
             top: 50%;
@@ -56,152 +67,55 @@
             transform: translate(-50%, -50%);
             z-index: 1000;
         }
-        .ai-btn {
-            background-color: transparent;
-            border: 2px solid #4299e1;
-            color: #4299e1;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            margin-top: 1rem;
-            display: inline-block;
-            transition: all 0.3s ease-in-out;
-            cursor: pointer;
-        }
-        .ai-btn:hover {
-            background-color: #4299e1;
-            color: #fff;
-            transform: scale(1.05);
-        }
-        .api-response-box {
-            background-color: #1a202c;
-            color: #c9d1d9;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            max-width: 80%;
-            max-height: 80%;
-            overflow-y: auto;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
-            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        }
-        .section-divider {
-            height: 4px;
-            background: linear-gradient(90deg, #1f2937, #2b6cb0, #1f2937);
-            width: 80%;
-            margin: 4rem auto;
-            border-radius: 9999px;
-        }
-        
-        /* Estilos para la pantalla de introducción */
-        #intro-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #0d1117;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            transition: opacity 1s ease-out, visibility 1s ease-out;
-            visibility: visible;
-            opacity: 1;
-        }
-        #intro-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.7;
-        }
-        #name-display-container {
-            z-index: 10;
-            position: relative;
-        }
-        #name-display-text {
-            font-size: 2rem;
-            font-weight: 800;
-            color: transparent; /* El texto real no se ve */
-            text-align: center;
-            white-space: pre; /* Mantiene los espacios para la medición */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: none; /* Oculto, solo para medir su tamaño */
-        }
-        #main-content {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 1s ease-out, visibility 1s ease-out;
-        }
-        #main-content.visible {
-            opacity: 1;
-            visibility: visible;
-        }
     </style>
 </head>
-<body>
+<body class="bg-slate-900 text-slate-200">
     
-    <!-- Pantalla de Introducción -->
-    <div id="intro-screen">
-        <canvas id="intro-canvas"></canvas>
-        <!-- Canvas para el texto de introducción que se va a formar -->
-        <canvas id="text-canvas" style="position: absolute;"></canvas>
-    </div>
-
-    <!-- Contenido Principal del Sitio Web (inicialmente oculto) -->
-    <div id="main-content" class="max-w-7xl mx-auto">
+    <!-- Contenido Principal del Sitio Web -->
+    <div class="max-w-7xl mx-auto">
         <!-- Barra de navegación -->
-        <nav class="fixed top-4 left-4 right-4 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm p-4 rounded-3xl shadow-lg flex items-center justify-between transition-all duration-300">
-            <a href="#" class="flex items-center space-x-2 text-white font-bold text-xl md:text-2xl hover:text-blue-400 transition-colors">
-                <i class="fas fa-code fa-lg text-blue-400"></i>
+        <nav class="fixed top-0 left-0 right-0 z-50 navbar-blur p-4 shadow-md flex items-center justify-between transition-all duration-300">
+            <a href="#" class="flex items-center space-x-2 text-sky-400 font-bold text-xl md:text-2xl hover:text-sky-200 transition-colors">
+                <i class="fas fa-code fa-lg"></i>
                 <span>Fabricio Toso</span>
             </a>
             <div class="flex space-x-4 md:space-x-6">
-                <a href="#inicio" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Inicio</a>
-                <a href="#filosofia" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Mi Filosofía</a>
-                <a href="#servicios" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Servicios</a>
-                <a href="#proyectos" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Proyectos</a>
-                <a href="#ia" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Herramientas IA</a>
-                <a href="#contacto" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Contacto</a>
+                <a href="#inicio" class="text-slate-400 hover:text-sky-400 font-semibold transition-colors hidden md:block">Inicio</a>
+                <a href="#filosofia" class="text-slate-400 hover:text-sky-400 font-semibold transition-colors hidden md:block">Filosofía</a>
+                <a href="#servicios" class="text-slate-400 hover:text-sky-400 font-semibold transition-colors hidden md:block">Servicios</a>
+                <a href="#proyectos" class="text-slate-400 hover:text-sky-400 font-semibold transition-colors hidden md:block">Proyectos</a>
+                <a href="#ia-hub" class="text-slate-400 hover:text-sky-400 font-semibold transition-colors hidden md:block">IA Hub</a>
+                <a href="#contacto" class="text-slate-400 hover:text-sky-400 font-semibold transition-colors hidden md:block">Contacto</a>
             </div>
-            <a href="#contacto" class="md:hidden bg-blue-500 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-all duration-300 hover:bg-blue-600">
+            <a href="#contacto" class="md:hidden main-btn shadow-lg">
                 Contacto
             </a>
         </nav>
 
         <!-- Sección de Inicio (Hero) -->
-        <section id="inicio" class="relative overflow-hidden flex flex-col items-center justify-center min-h-[100vh] text-center p-6 rounded-3xl mt-20" id="hero-background">
-            <div class="z-10">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4">
-                    Hola, soy <span class="gradient-text">Fabricio Toso</span>
+        <section id="inicio" class="hero-bg-container flex flex-col items-center justify-center min-h-[100vh] text-center p-6 pt-24">
+            <div class="p-8 bg-slate-900 bg-opacity-70 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-sky-400/20">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-sky-400 mb-4 animate-fade-in-down">
+                    Hola, soy Fabricio Toso
                 </h1>
-                <p class="text-lg md:text-2xl text-gray-400 mb-6 font-light">
-                    <span id="typing-effect" class="font-bold"></span>
+                <p class="text-lg md:text-2xl text-slate-300 mb-6 font-light">
+                    <span id="typing-effect" class="font-bold text-sky-300"></span>
                 </p>
-                <p class="text-gray-400 max-w-2xl mb-8">
-                    Combino mi pasión por el desarrollo web con un enfoque analítico y creativo para construir soluciones digitales que funcionan.
+                <p class="text-slate-400 max-w-2xl mb-8">
+                    Combinando el desarrollo web con la tecnología y la biología para crear soluciones innovadoras.
                 </p>
-                <a href="#contacto" class="bg-blue-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:bg-blue-600">
+                <a href="#contacto" class="main-btn">
                     ¡Hablemos de tu proyecto!
                 </a>
             </div>
         </section>
-        <div class="section-divider"></div>
+        <div class="h-1 bg-slate-800 w-full"></div>
 
         <!-- Nueva Sección: Mi Filosofía de Trabajo -->
-        <section id="filosofia" class="py-12 md:py-24 text-center">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Mi Filosofía de Trabajo</h2>
-            <div class="max-w-4xl mx-auto mt-12 text-left">
-                <p id="filosofia-text" class="text-lg text-gray-300 mb-4">
+        <section id="filosofia" class="py-12 md:py-24 text-center px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-sky-400 mb-8">Mi Filosofía de Trabajo</h2>
+            <div class="max-w-4xl mx-auto mt-12 text-left bg-slate-800 p-8 rounded-2xl border border-slate-700">
+                <p id="filosofia-text" class="text-lg text-slate-300 mb-4">
                     Me adapto a tus necesidades con una <strong>gran relación calidad precio</strong>, con tarifas de programador web para pequeños y medianos negocios. Desarrollo web desde cero o rediseño de tu página web con un diseño moderno y elegante.
                     Con un proyecto web robusto y de calidad, darás una nueva imagen a tu negocio, conseguirás un mayor volumen de negocio con información directa a tus clientes las 24h del día. Te oriento de principio a fin desde las necesidades técnicas hasta la contratación del hosting y dominio, para que tengas tu página web terminada y lista para funcionar «llave en mano».
                     <br><br>
@@ -209,178 +123,154 @@
                     <br><br>
                     Principalmente realizo proyectos de <strong>Páginas Webs WordPress y Tiendas Online</strong>, seguidos muy de cerca de los servicios de <strong>mantenimiento web y gestión</strong>. También Maquetación de Newsletters HTML, para enviar por email o MailChimp, entre otros muchos proyectos.
                 </p>
-                <button id="read-aloud-btn" class="ai-btn"><i class="fas fa-volume-up mr-2"></i>✨ Leer en voz alta ✨</button>
-                <audio id="audio-player" class="mt-4 w-full" controls style="display: none;"></audio>
+                <button id="read-aloud-btn" class="main-btn mt-4">
+                    <i class="fas fa-volume-up mr-2"></i>✨ Leer en voz alta ✨
+                </button>
+                <audio id="audio-player" class="mt-4 w-full hidden bg-slate-700 rounded-lg p-2" controls></audio>
             </div>
         </section>
-        <div class="section-divider"></div>
+        <div class="h-1 bg-slate-800 w-full"></div>
 
         <!-- Sección de Servicios -->
-        <section id="servicios" class="py-12 md:py-24 text-center">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Mis Servicios</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <div class="bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
-                    <i class="fas fa-desktop fa-3x gradient-text mb-4"></i>
-                    <h3 class="text-2xl font-bold text-gray-200 mb-2">Desarrollo Web</h3>
-                    <p class="text-gray-400">Creación de sitios web a medida, desde landing pages hasta plataformas complejas. Diseño moderno y responsivo garantizado.</p>
+        <section id="servicios" class="py-12 md:py-24 text-center px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-sky-400 mb-8">Mis Servicios</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 max-w-5xl mx-auto">
+                <div class="card p-8 rounded-3xl hover:shadow-sky-400/20">
+                    <i class="fas fa-desktop fa-3x text-sky-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold text-slate-100 mb-2">Desarrollo Web</h3>
+                    <p class="text-slate-400">Creación de sitios web a medida, desde landing pages hasta plataformas complejas. Diseño moderno y responsivo garantizado.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
-                    <i class="fab fa-wordpress fa-3x gradient-text mb-4"></i>
-                    <h3 class="text-2xl font-bold text-gray-200 mb-2">Especialista en WordPress</h3>
-                    <p class="text-gray-400">Desarrollo y personalización de temas y plugins. Optimización y mantenimiento para un rendimiento óptimo.</p>
+                <div class="card p-8 rounded-3xl hover:shadow-sky-400/20">
+                    <i class="fab fa-wordpress fa-3x text-sky-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold text-slate-100 mb-2">Especialista en WordPress</h3>
+                    <p class="text-slate-400">Desarrollo y personalización de temas y plugins. Optimización y mantenimiento para un rendimiento óptimo.</p>
                 </div>
-                <div class="bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
-                    <i class="fas fa-mobile-alt fa-3x gradient-text mb-4"></i>
-                    <h3 class="text-2xl font-bold text-gray-200 mb-2">Aplicaciones Digitales</h3>
-                    <p class="text-gray-400">Diseño y construcción de aplicaciones interactivas que resuelven problemas reales y mejoran la experiencia del usuario.</p>
+                <div class="card p-8 rounded-3xl hover:shadow-sky-400/20">
+                    <i class="fas fa-mobile-alt fa-3x text-sky-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold text-slate-100 mb-2">Aplicaciones Digitales</h3>
+                    <p class="text-slate-400">Diseño y construcción de aplicaciones interactivas que resuelven problemas reales y mejoran la experiencia del usuario.</p>
                 </div>
             </div>
         </section>
-        <div class="section-divider"></div>
+        <div class="h-1 bg-slate-800 w-full"></div>
 
         <!-- Sección de Proyectos -->
-        <section id="proyectos" class="py-12 md:py-24 text-center">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Mis Proyectos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-                <a href="https://github.com/FaMatias/Sistema_inventarios" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Sistema de Inventarios</h3>
-                    <p class="text-gray-400 mb-4">Un sistema de gestión de inventarios hecho a medida para un cliente.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+        <section id="proyectos" class="py-12 md:py-24 text-center px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-sky-400 mb-8">Mis Proyectos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 max-w-5xl mx-auto">
+                <a href="https://github.com/FaMatias/Sistema_inventarios" target="_blank" class="card block p-6 rounded-2xl hover:shadow-sky-400/20">
+                    <h3 class="text-xl font-bold text-slate-100 mb-1">Sistema de Inventarios</h3>
+                    <p class="text-slate-400 mb-4">Un sistema de gestión de inventarios hecho a medida para un cliente.</p>
+                    <span class="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
                 </a>
-                <a href="https://github.com/FaMatias/Vinos_Argentina" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Vinos Argentina</h3>
-                    <p class="text-gray-400 mb-4">Una aplicación web para explorar y gestionar datos sobre vinos argentinos.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                <a href="https://github.com/FaMatias/Vinos_Argentina" target="_blank" class="card block p-6 rounded-2xl hover:shadow-sky-400/20">
+                    <h3 class="text-xl font-bold text-slate-100 mb-1">Vinos Argentina</h3>
+                    <p class="text-slate-400 mb-4">Una aplicación web para explorar y gestionar datos sobre vinos argentinos.</p>
+                    <span class="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
                 </a>
-                <a href="https://github.com/FaMatias/Stock-de-Vinos-Ex-ticos" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Stock de Vinos Exóticos</h3>
-                    <p class="text-gray-400 mb-4">Plataforma de gestión de stock para una colección de vinos especializados.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                <a href="https://github.com/FaMatias/Stock-de-Vinos-Ex-ticos" target="_blank" class="card block p-6 rounded-2xl hover:shadow-sky-400/20">
+                    <h3 class="text-xl font-bold text-slate-100 mb-1">Stock de Vinos Exóticos</h3>
+                    <p class="text-slate-400 mb-4">Plataforma de gestión de stock para una colección de vinos especializados.</p>
+                    <span class="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
                 </a>
-                
-                <a href="https://famatias.github.io/Simple-Links/index.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Simple-Links</h3>
-                    <p class="text-gray-400 mb-4">Una página de enlaces personalizada para perfiles sociales.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                <a href="https://famatias.github.io/Simple-Links/index.html" target="_blank" class="card block p-6 rounded-2xl hover:shadow-sky-400/20">
+                    <h3 class="text-xl font-bold text-slate-100 mb-1">Simple-Links</h3>
+                    <p class="text-slate-400 mb-4">Una página de enlaces personalizada para perfiles sociales.</p>
+                    <span class="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
                 </a>
-                <a href="https://famatias.github.io/Simple-Links/practicas.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Pizarra Colaborativa</h3>
-                    <p class="text-gray-400 mb-4">Aplicación de pizarra en tiempo real para trabajo en equipo.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                <a href="https://famatias.github.io/Simple-Links/practicas.html" target="_blank" class="card block p-6 rounded-2xl hover:shadow-sky-400/20">
+                    <h3 class="text-xl font-bold text-slate-100 mb-1">Pizarra Colaborativa</h3>
+                    <p class="text-slate-400 mb-4">Aplicación de pizarra en tiempo real para trabajo en equipo.</p>
+                    <span class="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
                 </a>
-                <a href="https://famatias.github.io/Simple-Links/practicas.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Tablero Kanban</h3>
-                    <p class="text-gray-400 mb-4">Herramienta para organizar tareas en un tablero visual.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
-                </a>
-                <a href="https://famatias.github.io/Simple-Links/practicas.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Generador de Contraseñas</h3>
-                    <p class="text-gray-400 mb-4">Crea contraseñas seguras y aleatorias con un clic.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
-                </a>
-                <a href="https://famatias.github.io/Simple-Links/utiles.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Calculadora de Edad</h3>
-                    <p class="text-gray-400 mb-4">Calcula la edad de una persona a partir de su fecha de nacimiento.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
-                </a>
-                <a href="https://famatias.github.io/Simple-Links/utiles.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Juego del Ahorcado</h3>
-                    <p class="text-gray-400 mb-4">Clásico juego del ahorcado para pasar el rato.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Juego</span>
-                </a>
-                <a href="https://famatias.github.io/Simple-Links/utiles.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Piedra, Papel o Tijera</h3>
-                    <p class="text-gray-400 mb-4">El clásico juego de mano contra la computadora.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Juego</span>
-                </a>
-                <a href="https://famatias.github.io/Simple-Links/utiles.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
-                    <h3 class="text-xl font-bold text-white mb-1">Tablas de Multiplicar</h3>
-                    <p class="text-gray-400 mb-4">Una aplicación simple para practicar las tablas de multiplicar.</p>
-                    <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
+                <a href="https://famatias.github.io/Simple-Links/practicas.html" target="_blank" class="card block p-6 rounded-2xl hover:shadow-sky-400/20">
+                    <h3 class="text-xl font-bold text-slate-100 mb-1">Tablero Kanban</h3>
+                    <p class="text-slate-400 mb-4">Herramienta para organizar tareas en un tablero visual.</p>
+                    <span class="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
                 </a>
             </div>
         </section>
-        <div class="section-divider"></div>
+        <div class="h-1 bg-slate-800 w-full"></div>
 
         <!-- Sección de Herramientas de IA -->
-        <section id="ia" class="py-12 md:py-24 text-center">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Integra IA en tu Proyecto</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+        <section id="ia-hub" class="py-12 md:py-24 text-center px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-sky-400 mb-8">IA Hub: Herramientas de Vanguardia</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto mb-8">
                 Demuestra el poder de la inteligencia artificial. Mis proyectos pueden incluir funciones como estas para generar valor, optimizar tareas o crear contenido único.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Herramienta 1: Generador de Imágenes -->
-                <div class="p-8 bg-gray-800 rounded-3xl shadow-xl">
-                    <h3 class="text-2xl font-bold text-gray-200 mb-4">Generador de Imágenes</h3>
-                    <p class="text-gray-400 mb-4">
+                <div class="card p-8 rounded-3xl hover:shadow-sky-400/20">
+                    <h3 class="text-2xl font-bold text-slate-100 mb-4">Generador de Imágenes</h3>
+                    <p class="text-slate-400 mb-4">
                         Describe la imagen que quieres crear. ¡Ideal para tener ideas para un logo, banner o imagen de producto!
                     </p>
-                    <input type="text" id="image-prompt" placeholder="Ej. un robot cocinando pizza en un restaurante elegante" required class="w-full p-4 rounded-xl border-2 border-gray-700 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-gray-50 placeholder-gray-500 mb-4">
-                    <button type="button" id="generate-image-btn" class="ai-btn w-full">
+                    <input type="text" id="image-prompt" placeholder="Ej. un robot cocinando pizza en un restaurante elegante" required class="w-full p-4 rounded-xl border-2 border-slate-700 bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-slate-200 placeholder-slate-400 mb-4">
+                    <button type="button" id="generate-image-btn" class="main-btn w-full">
                         <i class="fas fa-image mr-2"></i>Generar Imagen
                     </button>
-                    <div id="image-container" class="mt-8 flex justify-center items-center h-64 bg-gray-900 rounded-xl">
+                    <div id="image-container" class="mt-8 flex justify-center items-center h-64 bg-slate-800 rounded-xl border border-slate-700">
                         <img id="generated-image" class="max-h-full max-w-full rounded-xl object-contain hidden" alt="Imagen generada por IA">
-                        <div id="image-loader" class="text-gray-400 hidden"><i class="fas fa-sync fa-spin fa-2x"></i></div>
-                        <p id="image-placeholder" class="text-gray-500">La imagen generada aparecerá aquí.</p>
+                        <div id="image-loader" class="text-sky-400 hidden"><i class="fas fa-sync fa-spin fa-2x"></i></div>
+                        <p id="image-placeholder" class="text-slate-500">La imagen generada aparecerá aquí.</p>
                     </div>
                 </div>
 
                 <!-- Herramienta 2: Generador de Descripciones para E-commerce -->
-                <div class="p-8 bg-gray-800 rounded-3xl shadow-xl">
-                    <h3 class="text-2xl font-bold text-gray-200 mb-4">Generador de Descripciones</h3>
-                    <p class="text-gray-400 mb-4">
+                <div class="card p-8 rounded-3xl hover:shadow-sky-400/20">
+                    <h3 class="text-2xl font-bold text-slate-100 mb-4">Generador de Descripciones</h3>
+                    <p class="text-slate-400 mb-4">
                         Escribe el nombre de tu producto y sus características. La IA creará una descripción optimizada para ventas.
                     </p>
-                    <input type="text" id="product-name" placeholder="Nombre del Producto (ej. Auriculares inalámbricos Z1)" required class="w-full p-4 rounded-xl border-2 border-gray-700 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-gray-50 placeholder-gray-500 mb-2">
-                    <textarea id="product-features" rows="4" placeholder="Características (ej. Cancelación de ruido, batería de 20h, Bluetooth 5.2)" required class="w-full p-4 rounded-xl border-2 border-gray-700 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-gray-50 placeholder-gray-500"></textarea>
-                    <button type="button" id="generate-description-btn" class="ai-btn w-full">
+                    <input type="text" id="product-name" placeholder="Nombre del Producto (ej. Auriculares inalámbricos Z1)" required class="w-full p-4 rounded-xl border-2 border-slate-700 bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-slate-200 placeholder-slate-400 mb-2">
+                    <textarea id="product-features" rows="4" placeholder="Características (ej. Cancelación de ruido, batería de 20h, Bluetooth 5.2)" required class="w-full p-4 rounded-xl border-2 border-slate-700 bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-slate-200 placeholder-slate-400"></textarea>
+                    <button type="button" id="generate-description-btn" class="main-btn w-full mt-4">
                         <i class="fas fa-file-alt mr-2"></i>Generar Descripción
                     </button>
-                    <div id="description-container" class="mt-8 p-4 bg-gray-900 rounded-xl h-64 overflow-y-auto">
-                        <p id="description-result" class="text-gray-400">La descripción del producto aparecerá aquí.</p>
-                        <div id="description-loader" class="text-gray-400 hidden text-center"><i class="fas fa-sync fa-spin fa-2x"></i></div>
+                    <div id="description-container" class="mt-8 p-4 bg-slate-800 rounded-xl border border-slate-700 h-64 overflow-y-auto">
+                        <p id="description-result" class="text-slate-400">La descripción del producto aparecerá aquí.</p>
+                        <div id="description-loader" class="text-sky-400 hidden text-center"><i class="fas fa-sync fa-spin fa-2x"></i></div>
                     </div>
                 </div>
             </div>
         </section>
-        <div class="section-divider"></div>
+        <div class="h-1 bg-slate-800 w-full"></div>
 
         <!-- Sección de Contacto con formulario -->
-        <section id="contacto" class="py-12 md:py-24 text-center">
-            <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Pide tu Presupuesto</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto mb-8">
+        <section id="contacto" class="py-12 md:py-24 text-center px-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-sky-400 mb-8">Pide tu Presupuesto</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto mb-8">
                 ¿Tienes una idea o necesitas ayuda con tu proyecto digital? No dudes en contactarme. Estoy listo para ayudarte a crear algo increíble.
             </p>
-            <div class="max-w-xl mx-auto p-8 bg-gray-800 rounded-3xl shadow-xl">
+            <div class="max-w-xl mx-auto p-8 card rounded-3xl hover:shadow-sky-400/20">
                 <form id="contact-form" class="space-y-6">
                     <div>
-                        <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre" required class="w-full p-4 rounded-xl border-2 border-gray-700 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-gray-50 placeholder-gray-500">
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu Nombre" required class="w-full p-4 rounded-xl border-2 border-slate-700 bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-slate-200 placeholder-slate-400">
                     </div>
                     <div>
-                        <input type="email" id="email" name="email" placeholder="Tu Email" required class="w-full p-4 rounded-xl border-2 border-gray-700 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-gray-50 placeholder-gray-500">
+                        <input type="email" id="email" name="email" placeholder="Tu Email" required class="w-full p-4 rounded-xl border-2 border-slate-700 bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-slate-200 placeholder-slate-400">
                     </div>
                     <div>
-                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe tu proyecto" required class="w-full p-4 rounded-xl border-2 border-gray-700 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-gray-50 placeholder-gray-500"></textarea>
+                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe tu proyecto" required class="w-full p-4 rounded-xl border-2 border-slate-700 bg-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-slate-200 placeholder-slate-400"></textarea>
                     </div>
-                    <button type="button" id="analyze-project-btn" class="w-full bg-blue-500 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:bg-blue-600">
+                    <button type="button" id="analyze-project-btn" class="main-btn w-full mt-4">
                         <i class="fas fa-magic mr-2"></i>✨ Analizar Proyecto ✨
                     </button>
-                    <button type="submit" class="w-full bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:bg-blue-800 mt-2">
+                    <button type="submit" class="w-full main-btn mt-2 bg-slate-700 text-slate-200 hover:bg-slate-600 transition-colors duration-300 transform hover:scale-105">
                         Enviar Presupuesto
                     </button>
                 </form>
                 <div class="flex items-center justify-center space-x-6 mt-8">
-                    <a href="https://www.linkedin.com/in/fabricio-matias-toso/" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <a href="https://www.linkedin.com/in/fabricio-matias-toso/" target="_blank" class="text-slate-400 hover:text-sky-400 transition-colors">
                         <i class="fab fa-linkedin fa-2x"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <a href="#" class="text-slate-400 hover:text-sky-400 transition-colors">
                         <i class="fab fa-github fa-2x"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <a href="#" class="text-slate-400 hover:text-sky-400 transition-colors">
                         <i class="fab fa-twitter fa-2x"></i>
                     </a>
-                    <a href="https://www.instagram.com/fa.matias/" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <a href="https://www.instagram.com/fa.matias/" target="_blank" class="text-slate-400 hover:text-sky-400 transition-colors">
                         <i class="fab fa-instagram fa-2x"></i>
                     </a>
                 </div>
@@ -388,7 +278,7 @@
         </section>
 
         <!-- Pie de página -->
-        <footer class="text-center text-gray-500 mt-16 py-4 border-t border-gray-700">
+        <footer class="text-center text-slate-500 mt-16 py-4 border-t border-slate-800">
             <p>&copy; 2024 Fabricio Matías Toso. Todos los derechos reservados.</p>
         </footer>
     </div>
@@ -399,12 +289,12 @@
     </div>
 
     <!-- Modal para la respuesta del analizador de proyectos -->
-    <div id="apiResponseModal" class="api-response-box p-6 rounded-xl shadow-lg">
+    <div id="apiResponseModal" class="api-response-box p-6 rounded-xl shadow-lg bg-slate-900 border-2 border-sky-400/20">
         <div class="flex justify-between items-center mb-4">
-            <h3 class="text-2xl font-bold text-white">Análisis de Proyecto</h3>
-            <button id="closeModalBtn" class="text-gray-400 hover:text-white transition-colors">&times;</button>
+            <h3 class="text-2xl font-bold text-sky-400">Análisis de Proyecto</h3>
+            <button id="closeModalBtn" class="text-slate-400 hover:text-sky-400 transition-colors text-3xl font-light">&times;</button>
         </div>
-        <div id="apiResponseContent" class="prose text-gray-300 max-h-[calc(100vh-200px)] overflow-y-auto">
+        <div id="apiResponseContent" class="prose text-slate-400 max-h-[calc(100vh-200px)] overflow-y-auto">
             <!-- El contenido generado por la IA se inyectará aquí -->
         </div>
     </div>
@@ -412,139 +302,28 @@
     <!-- Script principal para las animaciones y APIs -->
     <script>
         window.onload = function() {
-            const introScreen = document.getElementById('intro-screen');
-            const mainContent = document.getElementById('main-content');
-            const mainCanvas = document.getElementById('intro-canvas');
-            const textCanvas = document.getElementById('text-canvas');
-            
-            const mainCtx = mainCanvas.getContext('2d');
-            const textCtx = textCanvas.getContext('2d', { willReadFrequently: true });
-            
-            const nameToForm = "FABRICIO MATIAS TOSO";
-            
-            let nameFormed = false;
-            let currentNameLength = 0;
-            const nameTypingSpeed = 70;
-            let nameFormedTimeout = null;
-
-            // Lógica para el efecto de lluvia de código
-            const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-            const fontSize = 16;
-            let columns, drops, textData;
-
-            function setupCanvases() {
-                mainCanvas.width = window.innerWidth;
-                mainCanvas.height = window.innerHeight;
-                textCanvas.width = window.innerWidth;
-                textCanvas.height = window.innerHeight;
-                columns = Math.floor(mainCanvas.width / fontSize);
-                drops = [];
-                for (let i = 0; i < columns; i++) {
-                    drops[i] = 1;
-                }
-            }
-
-            function drawName() {
-                // Fix: Check if canvas has valid dimensions before drawing
-                if (textCanvas.width === 0 || textCanvas.height === 0) {
-                    console.warn("Text canvas has zero dimensions. Skipping drawName().");
-                    return;
-                }
-                textCtx.clearRect(0, 0, textCanvas.width, textCanvas.height);
-                textCtx.fillStyle = 'white';
-                textCtx.textAlign = 'center';
-                const dynamicFontSize = Math.min(64, mainCanvas.width / 10);
-                textCtx.font = `${dynamicFontSize}px 'Inter', sans-serif`;
-                
-                // Dibuja el nombre con el número de letras que ya se han "formado"
-                const nameSubset = nameToForm.substring(0, currentNameLength);
-                textCtx.fillText(nameSubset, textCanvas.width / 2, textCanvas.height / 2);
-                
-                // Fix: Only get image data if the canvas is valid
-                if (textCanvas.width > 0 && textCanvas.height > 0) {
-                    textData = textCtx.getImageData(0, 0, textCanvas.width, textCanvas.height);
-                }
-
-                if (currentNameLength < nameToForm.length) {
-                    currentNameLength++;
-                    setTimeout(drawName, nameTypingSpeed);
+            // Lógica para mostrar mensajes de éxito/error (no alerts)
+            function showMessage(text, type = 'success', duration = 3000) {
+                const messageBox = document.getElementById('messageBox');
+                const messageText = document.getElementById('messageText');
+                messageText.textContent = text;
+                messageBox.className = 'message-box p-4 rounded-xl shadow-lg';
+                if (type === 'error') {
+                    messageBox.classList.add('bg-rose-500', 'text-white');
                 } else {
-                    nameFormed = true;
-                    // Esperar un poco antes de la transición
-                    nameFormedTimeout = setTimeout(transitionToMainContent, 2000);
+                    messageBox.classList.add('bg-emerald-500', 'text-white');
                 }
+                messageBox.style.display = 'block';
+                setTimeout(() => {
+                    messageBox.style.display = 'none';
+                }, duration);
             }
-
-            function drawMatrix() {
-                mainCtx.fillStyle = 'rgba(13, 17, 23, 0.05)';
-                mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
-                mainCtx.font = `${fontSize}px monospace`;
-
-                for (let i = 0; i < drops.length; i++) {
-                    const x = i * fontSize;
-                    const y = drops[i] * fontSize;
-
-                    let text = characters.charAt(Math.floor(Math.random() * characters.length));
-                    let textColor = '#0f0';
-
-                    // Si el nombre ya está formado, haz que el color del texto sea más sólido
-                    // y detén el movimiento de las gotas dentro de la forma del nombre.
-                    if (nameFormed && textData) {
-                        const pixelX = Math.floor(x);
-                        const pixelY = Math.floor(y);
-                        // Asegura que las coordenadas no superen los límites
-                        if (pixelX >= 0 && pixelX < textCanvas.width && pixelY >= 0 && pixelY < textCanvas.height) {
-                            const index = (pixelY * textCanvas.width + pixelX) * 4;
-                            // Comprueba si el píxel del lienzo de texto es blanco (o cerca del blanco)
-                            if (textData.data[index] > 0) {
-                                textColor = '#4299e1'; // Color azul para el nombre
-                                drops[i] = y / fontSize; // Fija la gota en su lugar
-                            }
-                        }
-                    }
-
-                    mainCtx.fillStyle = textColor;
-                    mainCtx.fillText(text, x, y);
-
-                    // Reinicia la gota si llega al final, a menos que ya sea parte del nombre
-                    if (y > mainCanvas.height && Math.random() > 0.975) {
-                        if (!nameFormed || !textData || textData.data[((Math.floor(y) * textCanvas.width) + Math.floor(x)) * 4] === 0) {
-                             drops[i] = 0;
-                        }
-                    }
-                    
-                    // Incrementa la posición Y de la gota
-                    drops[i]++;
-                }
-            }
-
-            function animateIntro() {
-                drawMatrix();
-                // Si el nombre aún no se ha formado por completo, dibújalo en el canvas secundario
-                if (!nameFormed) {
-                    drawName();
-                }
-                requestAnimationFrame(animateIntro);
-            }
-
-            function transitionToMainContent() {
-                introScreen.style.opacity = '0';
-                introScreen.style.visibility = 'hidden';
-                mainContent.classList.add('visible');
-                setTimeout(startMainTypingEffect, 1000);
-            }
-
-            window.addEventListener('resize', () => {
-                setupCanvases();
-                if (!nameFormed) {
-                    drawName(); // Vuelve a dibujar el nombre si se redimensiona
-                }
-            });
 
             // Lógica del efecto de escritura en la sección Hero
-            function startMainTypingEffect() {
+            function startTypingEffect() {
                 const typingElement = document.getElementById('typing-effect');
-                const phrases = ["Desarrollador Web", "Programador de Aplicaciones Digitales", "Especialista en WordPress", "Biotecnólogo"];
+                // Se actualizó para reflejar el cambio a "Biotecnólogo"
+                const phrases = ["Desarrollador Web", "Biotecnólogo", "Especialista en WordPress", "Creador de Soluciones Digitales"];
                 let phraseIndex = 0;
                 let letterIndex = 0;
                 let isDeleting = false;
@@ -574,31 +353,7 @@
                 }
                 type();
             }
-
-            // --- ESTE ES EL ORDEN DE LLAMADA CORREGIDO ---
-            // 1. Primero, se configuran los canvases para darles ancho y alto.
-            setupCanvases();
-            // 2. Luego, se inicia la animación principal.
-            animateIntro();
-            // Esto asegura que drawName() se llame solo después de que el canvas tenga dimensiones válidas.
-            
-            // ... (resto del código de APIs y formularios sin cambios)
-            // Lógica para mostrar mensajes de éxito/error
-            function showMessage(text, type = 'success', duration = 3000) {
-                const messageBox = document.getElementById('messageBox');
-                const messageText = document.getElementById('messageText');
-                messageText.textContent = text;
-                messageBox.className = 'message-box p-4 rounded-xl shadow-lg';
-                if (type === 'error') {
-                    messageBox.classList.add('bg-red-500', 'text-white');
-                } else {
-                    messageBox.classList.add('bg-emerald-500', 'text-white');
-                }
-                messageBox.style.display = 'block';
-                setTimeout(() => {
-                    messageBox.style.display = 'none';
-                }, duration);
-            }
+            startTypingEffect();
 
             // Lógica del formulario de contacto
             const contactForm = document.getElementById('contact-form');
@@ -798,7 +553,7 @@
                             
                             audioUrl = URL.createObjectURL(wavBlob);
                             audioPlayer.src = audioUrl;
-                            audioPlayer.style.display = 'block';
+                            audioPlayer.classList.remove('hidden');
                             audioPlayer.play();
                             isPlaying = true;
                             readAloudBtn.innerHTML = '<i class="fas fa-pause mr-2"></i> Detener';
@@ -819,7 +574,7 @@
                 callTtsApi();
             });
 
-            // Gemini API: Generador de Imágenes
+            // Gemini API: Generador de Imágenes (Modelo corregido)
             const generateImageBtn = document.getElementById('generate-image-btn');
             const imagePromptInput = document.getElementById('image-prompt');
             const generatedImage = document.getElementById('generated-image');
