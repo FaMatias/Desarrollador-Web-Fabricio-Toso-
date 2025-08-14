@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0d1117;
@@ -47,21 +48,6 @@
             background-color: #2b6cb0;
             border-radius: 9999px;
         }
-        #hero-background {
-            background-image: url('https://placehold.co/1920x1080/1f2937/d1d5db?text=Fondo+Profesional');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        #hero-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(13, 17, 23, 0.85);
-        }
         .message-box, .api-response-box {
             display: none;
             position: fixed;
@@ -70,7 +56,6 @@
             transform: translate(-50%, -50%);
             z-index: 1000;
         }
-        /* Estilo para los botones de IA */
         .ai-btn {
             background-color: transparent;
             border: 2px solid #4299e1;
@@ -110,18 +95,76 @@
             margin: 4rem auto;
             border-radius: 9999px;
         }
+        
+        /* Estilos para la pantalla de introducción */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d1117;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+            visibility: visible;
+            opacity: 1;
+        }
+        #intro-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.7;
+        }
+        #name-display-container {
+            z-index: 10;
+            position: relative;
+        }
+        #name-display-text {
+            font-size: 2rem;
+            font-weight: 800;
+            color: transparent; /* El texto real no se ve */
+            text-align: center;
+            white-space: pre; /* Mantiene los espacios para la medición */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Oculto, solo para medir su tamaño */
+        }
+        #main-content {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+        }
+        #main-content.visible {
+            opacity: 1;
+            visibility: visible;
+        }
     </style>
 </head>
-<body class="p-4 md:p-8">
-    <div class="max-w-7xl mx-auto">
+<body>
+    
+    <!-- Pantalla de Introducción -->
+    <div id="intro-screen">
+        <canvas id="intro-canvas"></canvas>
+        <!-- Canvas para el texto de introducción que se va a formar -->
+        <canvas id="text-canvas" style="position: absolute;"></canvas>
+    </div>
+
+    <!-- Contenido Principal del Sitio Web (inicialmente oculto) -->
+    <div id="main-content" class="max-w-7xl mx-auto">
         <!-- Barra de navegación -->
         <nav class="fixed top-4 left-4 right-4 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm p-4 rounded-3xl shadow-lg flex items-center justify-between transition-all duration-300">
-            <!-- Logo (placeholder) -->
             <a href="#" class="flex items-center space-x-2 text-white font-bold text-xl md:text-2xl hover:text-blue-400 transition-colors">
                 <i class="fas fa-code fa-lg text-blue-400"></i>
                 <span>Fabricio Toso</span>
             </a>
-            <!-- Menú de navegación -->
             <div class="flex space-x-4 md:space-x-6">
                 <a href="#inicio" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Inicio</a>
                 <a href="#filosofia" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Mi Filosofía</a>
@@ -130,7 +173,6 @@
                 <a href="#ia" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Herramientas IA</a>
                 <a href="#contacto" class="text-white hover:text-blue-400 font-semibold transition-colors hidden md:block">Contacto</a>
             </div>
-            <!-- Botón de contacto para móvil -->
             <a href="#contacto" class="md:hidden bg-blue-500 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-all duration-300 hover:bg-blue-600">
                 Contacto
             </a>
@@ -159,7 +201,6 @@
         <section id="filosofia" class="py-12 md:py-24 text-center">
             <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Mi Filosofía de Trabajo</h2>
             <div class="max-w-4xl mx-auto mt-12 text-left">
-                <!-- Contenido de la filosofía -->
                 <p id="filosofia-text" class="text-lg text-gray-300 mb-4">
                     Me adapto a tus necesidades con una <strong>gran relación calidad precio</strong>, con tarifas de programador web para pequeños y medianos negocios. Desarrollo web desde cero o rediseño de tu página web con un diseño moderno y elegante.
                     Con un proyecto web robusto y de calidad, darás una nueva imagen a tu negocio, conseguirás un mayor volumen de negocio con información directa a tus clientes las 24h del día. Te oriento de principio a fin desde las necesidades técnicas hasta la contratación del hosting y dominio, para que tengas tu página web terminada y lista para funcionar «llave en mano».
@@ -168,7 +209,6 @@
                     <br><br>
                     Principalmente realizo proyectos de <strong>Páginas Webs WordPress y Tiendas Online</strong>, seguidos muy de cerca de los servicios de <strong>mantenimiento web y gestión</strong>. También Maquetación de Newsletters HTML, para enviar por email o MailChimp, entre otros muchos proyectos.
                 </p>
-                <!-- Botón para leer en voz alta con la API de Gemini TTS -->
                 <button id="read-aloud-btn" class="ai-btn"><i class="fas fa-volume-up mr-2"></i>✨ Leer en voz alta ✨</button>
                 <audio id="audio-player" class="mt-4 w-full" controls style="display: none;"></audio>
             </div>
@@ -179,19 +219,16 @@
         <section id="servicios" class="py-12 md:py-24 text-center">
             <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Mis Servicios</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                <!-- Tarjeta de Servicio 1 -->
                 <div class="bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
                     <i class="fas fa-desktop fa-3x gradient-text mb-4"></i>
                     <h3 class="text-2xl font-bold text-gray-200 mb-2">Desarrollo Web</h3>
                     <p class="text-gray-400">Creación de sitios web a medida, desde landing pages hasta plataformas complejas. Diseño moderno y responsivo garantizado.</p>
                 </div>
-                <!-- Tarjeta de Servicio 2 -->
                 <div class="bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
                     <i class="fab fa-wordpress fa-3x gradient-text mb-4"></i>
                     <h3 class="text-2xl font-bold text-gray-200 mb-2">Especialista en WordPress</h3>
                     <p class="text-gray-400">Desarrollo y personalización de temas y plugins. Optimización y mantenimiento para un rendimiento óptimo.</p>
                 </div>
-                <!-- Tarjeta de Servicio 3 -->
                 <div class="bg-gray-800 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2">
                     <i class="fas fa-mobile-alt fa-3x gradient-text mb-4"></i>
                     <h3 class="text-2xl font-bold text-gray-200 mb-2">Aplicaciones Digitales</h3>
@@ -205,7 +242,6 @@
         <section id="proyectos" class="py-12 md:py-24 text-center">
             <h2 class="text-3xl md:text-4xl font-extrabold text-white section-header">Mis Proyectos</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-                <!-- Proyectos de GitHub (privados, enlazados al repo) -->
                 <a href="https://github.com/FaMatias/Sistema_inventarios" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
                     <h3 class="text-xl font-bold text-white mb-1">Sistema de Inventarios</h3>
                     <p class="text-gray-400 mb-4">Un sistema de gestión de inventarios hecho a medida para un cliente.</p>
@@ -222,7 +258,6 @@
                     <span class="inline-block bg-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Web App</span>
                 </a>
                 
-                <!-- Proyectos existentes -->
                 <a href="https://famatias.github.io/Simple-Links/index.html" target="_blank" class="block bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1">
                     <h3 class="text-xl font-bold text-white mb-1">Simple-Links</h3>
                     <p class="text-gray-400 mb-4">Una página de enlaces personalizada para perfiles sociales.</p>
@@ -328,7 +363,6 @@
                     <div>
                         <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe tu proyecto" required class="w-full p-4 rounded-xl border-2 border-gray-700 bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm text-gray-50 placeholder-gray-500"></textarea>
                     </div>
-                    <!-- Botón para analizar el proyecto con la API de Gemini LLM -->
                     <button type="button" id="analyze-project-btn" class="w-full bg-blue-500 text-white font-bold py-4 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:bg-blue-600">
                         <i class="fas fa-magic mr-2"></i>✨ Analizar Proyecto ✨
                     </button>
@@ -337,19 +371,15 @@
                     </button>
                 </form>
                 <div class="flex items-center justify-center space-x-6 mt-8">
-                    <!-- Enlace a LinkedIn -->
                     <a href="https://www.linkedin.com/in/fabricio-matias-toso/" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
                         <i class="fab fa-linkedin fa-2x"></i>
                     </a>
-                    <!-- Enlace a GitHub (sin enlace por ahora) -->
                     <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
                         <i class="fab fa-github fa-2x"></i>
                     </a>
-                    <!-- Enlace a Twitter/X (sin enlace por ahora) -->
                     <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors">
                         <i class="fab fa-twitter fa-2x"></i>
                     </a>
-                    <!-- Enlace a Instagram -->
                     <a href="https://www.instagram.com/fa.matias/" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
                         <i class="fab fa-instagram fa-2x"></i>
                     </a>
@@ -379,40 +409,181 @@
         </div>
     </div>
 
-    <!-- Script para el efecto de escritura, formulario y APIs de Gemini -->
+    <!-- Script principal para las animaciones y APIs -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const typingElement = document.getElementById('typing-effect');
-            const phrases = ["Desarrollador Web", "Programador de Aplicaciones Digitales", "Especialista en WordPress", "Biotecnólogo"];
-            let phraseIndex = 0;
-            let letterIndex = 0;
-            let isDeleting = false;
-            let delay = 100;
+        window.onload = function() {
+            const introScreen = document.getElementById('intro-screen');
+            const mainContent = document.getElementById('main-content');
+            const mainCanvas = document.getElementById('intro-canvas');
+            const textCanvas = document.getElementById('text-canvas');
+            
+            const mainCtx = mainCanvas.getContext('2d');
+            const textCtx = textCanvas.getContext('2d', { willReadFrequently: true });
+            
+            const nameToForm = "FABRICIO MATIAS TOSO";
+            
+            let nameFormed = false;
+            let currentNameLength = 0;
+            const nameTypingSpeed = 70;
+            let nameFormedTimeout = null;
 
-            function type() {
-                const currentPhrase = phrases[phraseIndex];
-                if (isDeleting) {
-                    typingElement.textContent = currentPhrase.substring(0, letterIndex - 1);
-                    letterIndex--;
-                } else {
-                    typingElement.textContent = currentPhrase.substring(0, letterIndex + 1);
-                    letterIndex++;
-                }
+            // Lógica para el efecto de lluvia de código
+            const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+            const fontSize = 16;
+            let columns, drops, textData;
 
-                if (!isDeleting && letterIndex === currentPhrase.length) {
-                    delay = 2000;
-                    isDeleting = true;
-                } else if (isDeleting && letterIndex === 0) {
-                    isDeleting = false;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                    delay = 500;
-                } else {
-                    delay = isDeleting ? 50 : 100;
+            function setupCanvases() {
+                mainCanvas.width = window.innerWidth;
+                mainCanvas.height = window.innerHeight;
+                textCanvas.width = window.innerWidth;
+                textCanvas.height = window.innerHeight;
+                columns = Math.floor(mainCanvas.width / fontSize);
+                drops = [];
+                for (let i = 0; i < columns; i++) {
+                    drops[i] = 1;
                 }
-                setTimeout(type, delay);
             }
-            type();
 
+            function drawName() {
+                // Fix: Check if canvas has valid dimensions before drawing
+                if (textCanvas.width === 0 || textCanvas.height === 0) {
+                    console.warn("Text canvas has zero dimensions. Skipping drawName().");
+                    return;
+                }
+                textCtx.clearRect(0, 0, textCanvas.width, textCanvas.height);
+                textCtx.fillStyle = 'white';
+                textCtx.textAlign = 'center';
+                const dynamicFontSize = Math.min(64, mainCanvas.width / 10);
+                textCtx.font = `${dynamicFontSize}px 'Inter', sans-serif`;
+                
+                // Dibuja el nombre con el número de letras que ya se han "formado"
+                const nameSubset = nameToForm.substring(0, currentNameLength);
+                textCtx.fillText(nameSubset, textCanvas.width / 2, textCanvas.height / 2);
+                
+                // Fix: Only get image data if the canvas is valid
+                if (textCanvas.width > 0 && textCanvas.height > 0) {
+                    textData = textCtx.getImageData(0, 0, textCanvas.width, textCanvas.height);
+                }
+
+                if (currentNameLength < nameToForm.length) {
+                    currentNameLength++;
+                    setTimeout(drawName, nameTypingSpeed);
+                } else {
+                    nameFormed = true;
+                    // Esperar un poco antes de la transición
+                    nameFormedTimeout = setTimeout(transitionToMainContent, 2000);
+                }
+            }
+
+            function drawMatrix() {
+                mainCtx.fillStyle = 'rgba(13, 17, 23, 0.05)';
+                mainCtx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+                mainCtx.font = `${fontSize}px monospace`;
+
+                for (let i = 0; i < drops.length; i++) {
+                    const x = i * fontSize;
+                    const y = drops[i] * fontSize;
+
+                    let text = characters.charAt(Math.floor(Math.random() * characters.length));
+                    let textColor = '#0f0';
+
+                    // Si el nombre ya está formado, haz que el color del texto sea más sólido
+                    // y detén el movimiento de las gotas dentro de la forma del nombre.
+                    if (nameFormed && textData) {
+                        const pixelX = Math.floor(x);
+                        const pixelY = Math.floor(y);
+                        // Asegura que las coordenadas no superen los límites
+                        if (pixelX >= 0 && pixelX < textCanvas.width && pixelY >= 0 && pixelY < textCanvas.height) {
+                            const index = (pixelY * textCanvas.width + pixelX) * 4;
+                            // Comprueba si el píxel del lienzo de texto es blanco (o cerca del blanco)
+                            if (textData.data[index] > 0) {
+                                textColor = '#4299e1'; // Color azul para el nombre
+                                drops[i] = y / fontSize; // Fija la gota en su lugar
+                            }
+                        }
+                    }
+
+                    mainCtx.fillStyle = textColor;
+                    mainCtx.fillText(text, x, y);
+
+                    // Reinicia la gota si llega al final, a menos que ya sea parte del nombre
+                    if (y > mainCanvas.height && Math.random() > 0.975) {
+                        if (!nameFormed || !textData || textData.data[((Math.floor(y) * textCanvas.width) + Math.floor(x)) * 4] === 0) {
+                             drops[i] = 0;
+                        }
+                    }
+                    
+                    // Incrementa la posición Y de la gota
+                    drops[i]++;
+                }
+            }
+
+            function animateIntro() {
+                drawMatrix();
+                // Si el nombre aún no se ha formado por completo, dibújalo en el canvas secundario
+                if (!nameFormed) {
+                    drawName();
+                }
+                requestAnimationFrame(animateIntro);
+            }
+
+            function transitionToMainContent() {
+                introScreen.style.opacity = '0';
+                introScreen.style.visibility = 'hidden';
+                mainContent.classList.add('visible');
+                setTimeout(startMainTypingEffect, 1000);
+            }
+
+            window.addEventListener('resize', () => {
+                setupCanvases();
+                if (!nameFormed) {
+                    drawName(); // Vuelve a dibujar el nombre si se redimensiona
+                }
+            });
+
+            // Lógica del efecto de escritura en la sección Hero
+            function startMainTypingEffect() {
+                const typingElement = document.getElementById('typing-effect');
+                const phrases = ["Desarrollador Web", "Programador de Aplicaciones Digitales", "Especialista en WordPress", "Biotecnólogo"];
+                let phraseIndex = 0;
+                let letterIndex = 0;
+                let isDeleting = false;
+                let delay = 100;
+
+                function type() {
+                    const currentPhrase = phrases[phraseIndex];
+                    if (isDeleting) {
+                        typingElement.textContent = currentPhrase.substring(0, letterIndex - 1);
+                        letterIndex--;
+                    } else {
+                        typingElement.textContent = currentPhrase.substring(0, letterIndex + 1);
+                        letterIndex++;
+                    }
+
+                    if (!isDeleting && letterIndex === currentPhrase.length) {
+                        delay = 2000;
+                        isDeleting = true;
+                    } else if (isDeleting && letterIndex === 0) {
+                        isDeleting = false;
+                        phraseIndex = (phraseIndex + 1) % phrases.length;
+                        delay = 500;
+                    } else {
+                        delay = isDeleting ? 50 : 100;
+                    }
+                    setTimeout(type, delay);
+                }
+                type();
+            }
+
+            // --- ESTE ES EL ORDEN DE LLAMADA CORREGIDO ---
+            // 1. Primero, se configuran los canvases para darles ancho y alto.
+            setupCanvases();
+            // 2. Luego, se inicia la animación principal.
+            animateIntro();
+            // Esto asegura que drawName() se llame solo después de que el canvas tenga dimensiones válidas.
+            
+            // ... (resto del código de APIs y formularios sin cambios)
+            // Lógica para mostrar mensajes de éxito/error
             function showMessage(text, type = 'success', duration = 3000) {
                 const messageBox = document.getElementById('messageBox');
                 const messageText = document.getElementById('messageText');
@@ -433,7 +604,6 @@
             const contactForm = document.getElementById('contact-form');
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                // Simulación del envío de correo
                 showMessage("¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.");
                 contactForm.reset();
             });
@@ -466,12 +636,10 @@
                     showMessage("Por favor, describe tu proyecto primero.", 'error');
                     return;
                 }
-
                 analyzeProjectBtn.innerHTML = '<i class="fas fa-sync fa-spin mr-2"></i> Analizando...';
                 analyzeProjectBtn.disabled = true;
 
                 const llmPrompt = `Actúa como un consultor de desarrollo web experimentado. El usuario te ha descrito una idea de proyecto. Analiza la descripción, resume los puntos clave, sugiere una posible pila de tecnologías (ej. React, Node.js, MongoDB) y ofrece un plan de acción de alto nivel. Aquí está la descripción del proyecto: "${prompt}"`;
-
                 let retryCount = 0;
                 const maxRetries = 3;
                 let backoffTime = 1000;
@@ -482,7 +650,6 @@
                         const payload = { contents: chatHistory };
                         const apiKey = "";
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                        
                         const response = await fetch(apiUrl, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -587,7 +754,6 @@
 
                 const textToSpeak = filosofiaText.innerText.replace(/\s+/g, ' ').trim();
                 const prompt = `Say in a confident and professional tone: ${textToSpeak}`;
-
                 let retryCount = 0;
                 const maxRetries = 3;
                 let backoffTime = 1000;
@@ -605,7 +771,6 @@
                         };
                         const apiKey = "";
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
-                        
                         const response = await fetch(apiUrl, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -637,7 +802,6 @@
                             audioPlayer.play();
                             isPlaying = true;
                             readAloudBtn.innerHTML = '<i class="fas fa-pause mr-2"></i> Detener';
-
                             audioPlayer.onended = () => {
                                 isPlaying = false;
                                 readAloudBtn.innerHTML = '<i class="fas fa-volume-up mr-2"></i>✨ Leer en voz alta ✨';
@@ -669,7 +833,6 @@
                     showMessage("Por favor, ingresa una descripción para generar la imagen.", 'error');
                     return;
                 }
-
                 imagePlaceholder.style.display = 'none';
                 generatedImage.style.display = 'none';
                 imageLoader.style.display = 'block';
@@ -737,12 +900,10 @@
             generateDescriptionBtn.addEventListener('click', async () => {
                 const productName = productNameInput.value.trim();
                 const productFeatures = productFeaturesTextarea.value.trim();
-
                 if (!productName || !productFeatures) {
                     showMessage("Por favor, ingresa el nombre del producto y sus características.", 'error');
                     return;
                 }
-
                 descriptionResult.textContent = '';
                 descriptionLoader.style.display = 'block';
                 generateDescriptionBtn.innerHTML = '<i class="fas fa-sync fa-spin mr-2"></i> Generando...';
@@ -763,7 +924,6 @@
                         const payload = { contents: chatHistory };
                         const apiKey = "";
                         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                        
                         const response = await fetch(apiUrl, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -800,7 +960,7 @@
                 }
                 callDescriptionApi();
             });
-        });
+        };
     </script>
 </body>
 </html>
